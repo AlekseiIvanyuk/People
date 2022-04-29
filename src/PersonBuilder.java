@@ -1,5 +1,5 @@
 public class PersonBuilder {
-    //...
+
 
     protected String name;
     protected String surname;
@@ -7,30 +7,35 @@ public class PersonBuilder {
     protected String address;
 
     public PersonBuilder setName(String name) {
-        this.name = name;
+        if (name == null || name.isEmpty()) {
+            throw new IllegalStateException("Введите имя!");
+        } else {
+            this.name = name;
+        }
         return this;
     }
+
     public PersonBuilder setSurname(String surname) {
-        this.surname = surname;
+        if (surname == null || surname.isEmpty()) {
+            throw new IllegalStateException("Введите фамилию!");
+        } else {
+            this.surname = surname;
+        }
         return this;
     }
+
     public PersonBuilder setAge(int age) {
         this.age = age;
         return this;
     }
+
     public PersonBuilder setAddress(String address) {
         this.address = address;
-        return this; }
-
-    public Person build() {
-        return new Person(name,surname,age,address);
+        return this;
     }
 
+    public Person build() {
+        return new Person(name, surname, age, address);
+    }
 
-//    private Person(PersonBuilder personBuilder){
-//        this.name = personBuilder.name;
-//        this.surname = personBuilder.surname;
-//        this.age = personBuilder.age;
-//        this.address = personBuilder.address;
-//    }
 }

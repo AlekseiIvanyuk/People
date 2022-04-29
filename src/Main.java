@@ -6,12 +6,11 @@ public class Main {
                 .setAge(31)
                 .setAddress("Сидней")
                 .build();
-        System.out.println(mom);
-//        Person son = mom.newChildBuilder()
-//                .setName("Антошка")
-//                .build();
-//        System.out.println("У " + mom + " есть сын, " + son);
-//TODO
+        Person son = mom.newChildBuilder()
+                .setName("Антошка")
+                .build();
+        System.out.println("У " + mom + " есть сын, " + son);
+
         try {
             // Не хватает обяхательных полей
             new PersonBuilder().build();

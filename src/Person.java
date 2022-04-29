@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.OptionalInt;
 
 public class Person {
@@ -18,7 +19,7 @@ public class Person {
         this.surname = surname;
         this.age = age;
     }
-//
+
     public Person(String name, String surname, String address) {
         this.name = name;
         this.surname = surname;
@@ -33,9 +34,9 @@ public class Person {
     }
 
     public boolean hasAge() {
-        if (Person.this.age == 0) {
-            return false;
-        } else return true;
+        if (Person.this.age > 0) {
+            return true;
+        } else return false;
     }
 
     public boolean hasAddress() {
@@ -51,9 +52,10 @@ public class Person {
     public String getSurname() {
         return surname;
     }
-//TODO OptionalInt
-    public int getAge() {
-        return age;
+
+    public OptionalInt getAge() {
+
+        return OptionalInt.of(age);
     }
 
     public String getAddress() {
@@ -61,6 +63,7 @@ public class Person {
     }
 
     public void setAddress(String address) {
+
         this.address = address;
     }
 
@@ -71,56 +74,20 @@ public class Person {
     }
 
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getSurname(), getAge(), getAddress());
+    }
+
+    public PersonBuilder newChildBuilder() {
+        return new PersonBuilder().setSurname(surname).setAge(2).setAddress(address);
+    }
 
 
-//    public static class PersonBuilder {
-//        //...
-//
-//        protected String name;
-//        protected String surname;
-//        protected int age;
-//        protected String address;
-//
-//        public PersonBuilder setName(String name) {
-//            this.name = name;
-//            return this;
-//        }
-//        public PersonBuilder setSurname(String surname) {
-//            this.surname = surname;
-//            return this;
-//        }
-//        public PersonBuilder setAge(int age) {
-//            this.age = age;
-//            return this;
-//        }
-//        public PersonBuilder setAddress(String address) {
-//            this.address = address;
-//            return this; }
-//
-//        public Person build() {
-//            return new Person(this);
-//        }
-//    }
-//
-//    private Person(PersonBuilder personBuilder){
-//        this.name = personBuilder.name;
-//        this.surname = personBuilder.surname;
-//        this.age = personBuilder.age;
-//        this.address = personBuilder.address;
-//    }
-
-//    @Override
-//    public int hashCode() { /*...*/ }
-//
-//    public PersonBuilder newChildBuilder() { /*...*/ }
-
-
-
-    //TODO
     @Override
     public String toString() {
-        return "Person("+"mom:  "+ "name "+name+", surname "+
-                surname+ ", age "+age+ ", address "+address+")";
+        return "name " + name + ", surname " +
+                surname + ", age " + age + ", address " + address;
 
     }
 }
